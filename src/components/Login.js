@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { 
-    Card, CardHeader, CardBody, Button, Container, Navbar, NavbarBrand
+    Card, CardHeader, CardBody, Button, Container,
 } from 'reactstrap';
 
 const Login = () => {
@@ -10,8 +10,9 @@ const Login = () => {
         nombre: '',
         cuenta: 0
     });
-    const [userId, setUserId] = useState("null")
-    const [auth, setAuth]     = useState(false)
+    const [userId, setUserId] = useState("null");
+    const [auth, setAuth]     = useState(false);
+    const history = useHistory();
     const handleChange = (event) => {
         switch (event.target.id) {
             case 'nombre':
@@ -43,19 +44,12 @@ const Login = () => {
         }
     useEffect(()=> {
                 axios.get(`https://equlibrium-pfinal.firebaseio.com/users/${userId}.json`)
-                .then(({data})=>{if(data !== null){setAuth(true)}} ) 
+                .then(({data})=>{data !== null ? setAuth(true) : history.push("/home")} ) 
             },[userId])
     return (
         <>
             {auth ? <Redirect to="/Home"/> :
             <>
-            <Navbar color="primary">
-                <NavbarBrand></NavbarBrand>
-                <NavbarBrand>
-                    <h1 className="text-white"> Equlibrium </h1>
-                </NavbarBrand>
-                <NavbarBrand></NavbarBrand>
-            </Navbar>
             <Container className='d-flex justify-content-center'>
                 <Card style={{marginTop: "5%"}}>
                     <CardHeader className="text-center">REGISTRO</CardHeader>

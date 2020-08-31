@@ -1,50 +1,21 @@
 import React from 'react';
 import History from './views/History';
-import P404 from './views/P404';
-import Login from './components/Login';
 import Home from './views/Home';
+import P404 from './views/P404';
 import Newopp from './views/Newopp';
+import Navbar from './components/Navbar';
+import Login from './components/Login';
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
 } from "react-router-dom";
-
-const auth = {
-  isAuthenticated: false,
-  authenticate() {
-    auth.isAuthenticated = true;
-  },
-  signout() {
-    auth.isAuthenticated = false;
-  }
-};
-
-function PrivateRoute({ children, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        auth.isAuthenticated ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/",
-              state: { from: location }
-            }}
-          />
-        )
-      }
-    />
-  );
-}
 
 function App() {
   return (
     <Router>
+      <Navbar/>
       <Switch>
         <Route exact path="/">
           <Login />
@@ -61,8 +32,6 @@ function App() {
           <Route path="*">
             <P404></P404>
           </Route>
-        <PrivateRoute path="/protected">
-        </PrivateRoute>
       </Switch>
     </Router>
 
