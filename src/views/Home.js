@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import Layout from "../components/Layout"
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import {
     Card, CardHeader, CardBody, CardText, Button, Container, Table
 } from 'reactstrap';
-import Layout from "../components/Layout"
 
 const Home = () => {
     const [user, setUser] = useState({})

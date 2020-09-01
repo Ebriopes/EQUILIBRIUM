@@ -38,7 +38,9 @@ const NavbarE = () => {
     return (
         <Navbar style={{ backgroundColor: "#5385AF" }}>
             <img src={logo} alt="logo" height="50px"/>
-            <h3 className="text-white">EQUILIBRIUM</h3>
+            <div calssName="position-absolute">
+                <h2 className="text-center text-white">EQUILIBRIUM</h2>
+            </div>
             {menu()}
         </Navbar>
     )

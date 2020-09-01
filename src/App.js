@@ -1,10 +1,7 @@
 import React from 'react';
-import History from './views/History';
-import Home from './views/Home';
-import P404 from './views/P404';
-import Newopp from './views/Newopp';
+import { Landing,History,Home,P404,Newopp } from './views';
 import Navbar from './components/Navbar';
-import Login from './components/Login';
+import AuthContextProvider from './contexts/AuthContext';
 
 import {
   BrowserRouter as Router,
@@ -15,11 +12,12 @@ import {
 function App() {
   return (
     <Router>
-      <Navbar/>
-      <Switch>
-        <Route exact path="/">
-          <Login />
-        </Route>
+      <AuthContextProvider>
+        <Navbar/>
+        <Switch>
+          <Route exact path="/">
+            <Landing/>
+          </Route>
           <Route exact path="/history">
             <History />
           </Route>
@@ -32,7 +30,8 @@ function App() {
           <Route path="*">
             <P404></P404>
           </Route>
-      </Switch>
+        </Switch>
+      </AuthContextProvider>
     </Router>
 
   );

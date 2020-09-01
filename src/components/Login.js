@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Redirect, useHistory } from 'react-router-dom';
 import { 
     Card, CardHeader, CardBody, Button, Container,
 } from 'reactstrap';
+import axios from 'axios';
 
 const Login = () => {
     const [newUser, setNewUser] = useState({
@@ -12,7 +12,7 @@ const Login = () => {
     });
     const [userId, setUserId] = useState("null");
     const [auth, setAuth]     = useState(false);
-    const history = useHistory();
+    //const history = useHistory();
     const handleChange = (event) => {
         switch (event.target.id) {
             case 'nombre':
@@ -44,7 +44,7 @@ const Login = () => {
         }
     useEffect(()=> {
                 axios.get(`https://equlibrium-pfinal.firebaseio.com/users/${userId}.json`)
-                .then(({data})=>{data !== null ? setAuth(true) : history.push("/home")} ) 
+                .then(({data})=>{data !== null ? setAuth(true) : console.log(data)} ) 
             },[userId])
     return (
         <>
