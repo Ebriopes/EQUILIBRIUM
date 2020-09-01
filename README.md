@@ -11,4 +11,4 @@ l. `npm run eject`
 
 ### Deployment
 
-https://equilibrium-ebriopes.vercel.app
+https://equilibrium.vercel.app/
